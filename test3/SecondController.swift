@@ -21,13 +21,13 @@ public class adeleg: NSObject, NSStreamDelegate {
     public var inputStream: NSInputStream!
     public var outputStream: NSOutputStream!
     public func stream(stream: NSStream, handleEvent eventCode: NSStreamEvent) {
-        println("stream event")
+        print("stream event")
     }
 }
 class Connection4 {
     func connect() {
 
-        println("connecting4...")
+        print("connecting4...")
         var del : adeleg!
         //var inputStream: NSInputStream? =del.inputStream
         //var outputStream: NSOutputStream? = del.outputStream
@@ -52,7 +52,7 @@ class Connection3 : NSObject, NSStreamDelegate {//this one should work!
     private var inputStream: NSInputStream?
     private var outputStream: NSOutputStream?
     func connect() {
-        println("connecting3...")
+        print("connecting3...")
         
         NSStream.getStreamsToHostWithName("localhost", port: 8443, inputStream: &self.inputStream, outputStream: &self.outputStream)
         
@@ -68,7 +68,7 @@ class Connection3 : NSObject, NSStreamDelegate {//this one should work!
     }
     
     func stream(theStream: NSStream, handleEvent streamEvent: NSStreamEvent) {
-        println("stream event")
+        print("stream event")
     }
 }
 
@@ -82,7 +82,7 @@ class Connection2 : NSObject, NSStreamDelegate {
     private var inputStream: NSInputStream!
     private var outputStream: NSOutputStream!
     func connect() {
-        println("connecting2...")
+        print("connecting2...")
         var inputStream: NSInputStream?
         var outputStream: NSOutputStream?
         
@@ -100,7 +100,7 @@ class Connection2 : NSObject, NSStreamDelegate {
     }
     
     func stream(stream: NSStream, handleEvent eventCode: NSStreamEvent) {
-        println("stream event")
+        print("stream event")
     }
 }
 
@@ -122,14 +122,14 @@ func OutputAndBuffer(Input: String) {
     let Arr = tmp.componentsSeparatedByString("\n")
     if(countElements(Arr)==1){
         if(StringContainsCharacterAtEnd("\n", tmp)) {
-            println(Arr[0])
+            print(Arr[0])
         }
     }
     for(var counter=0;counter<Arr.count-1;counter++) {
-        println(Arr[counter])
+        print(Arr[counter])
     }
     Buffer=Arr[Arr.count-1]
-    //println("buffer:"+Buffer)
+    //print("buffer:"+Buffer)
 }
 */
 
@@ -145,7 +145,7 @@ public class Connection : NSObject, NSStreamDelegate {
 
     
     func connect() {
-        println("connecting...")
+        print("connecting...")
         
         var readStream:  Unmanaged<CFReadStream>?
         var writeStream: Unmanaged<CFWriteStream>?
@@ -174,9 +174,9 @@ public class Connection : NSObject, NSStreamDelegate {
         var data:NSMutableData = NSMutableData(length: 128)!
         switch (eventCode) {
         case NSStreamEvent.OpenCompleted:
-            println("Opened connection")
+            print("Opened connection")
         case NSStreamEvent.HasBytesAvailable:
-            println("Data Recieved")
+            print("Data Recieved")
             var res = sockcon.inputStream?.read(UnsafeMutablePointer<UInt8>(data.mutableBytes), maxLength: 128)
             data.length=res!
             let newstring = NSString(data: data, encoding: NSUTF8StringEncoding)
@@ -186,16 +186,16 @@ public class Connection : NSObject, NSStreamDelegate {
             //var sc: SecondController = SecondController()
             Line=newstring!
             FirstClassFunction()
-            println(newstring!)
+            print(newstring!)
         case NSStreamEvent.HasSpaceAvailable:
-            println("Sending")
+            print("Sending")
             
         case NSStreamEvent.ErrorOccurred:
-            println("error")
+            print("error")
         case NSStreamEvent.EndEncountered:
-            println("Encounter Ended")
+            print("Encounter Ended")
         default:
-            println("default")
+            print("default")
         }
     }
 }
@@ -212,7 +212,7 @@ public class SecondController: UIViewController,UITableViewDelegate, UITableView
         let numberOfRows = tv1.numberOfRowsInSection(numberOfSections-1)
         
         if numberOfRows > 0 {
-            println(numberOfSections)
+            print(numberOfSections)
             let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: (numberOfSections-1))
             tv1.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
         }
@@ -236,13 +236,13 @@ public class SecondController: UIViewController,UITableViewDelegate, UITableView
         
         while(tester == false) {
             tester=inputStream!.hasBytesAvailable.boolValue
-            println("in loop")
+            print("in loop")
         }//wait for input
         
         //get input
         inputStream?.read(UnsafeMutablePointer<UInt8>(data.bytes), maxLength: data.length)
         var newstring : NSString = NSString.stringWithUTF8String(UnsafePointer<Int8>(data.bytes))
-        println(newstring)
+        print(newstring)
         
         
         data = "this is a test string".dataUsingEncoding(NSUTF8StringEncoding)!
@@ -257,22 +257,22 @@ public class SecondController: UIViewController,UITableViewDelegate, UITableView
 
         switch (streamEvent) {
         case NSStreamEvent.OpenCompleted:
-            println("Opened connection")
+            print("Opened connection")
         case NSStreamEvent.HasBytesAvailable:
-            println("Data Recieved")
+            print("Data Recieved")
             sockcon.inputStream?.read(UnsafeMutablePointer<UInt8>(data.bytes), maxLength: data.length)
             //var newstring : NSString = NSString.stringWithUTF8String(UnsafePointer<Int8>(data.bytes))
             //var ns=NSString(UTF8String: <#UnsafePointer<Int8>#>(data.bytes))
-            //println(newstring)
+            //print(newstring)
         case NSStreamEvent.HasSpaceAvailable:
-            println("Sending")
+            print("Sending")
             
         case NSStreamEvent.ErrorOccurred:
-            println("error")
+            print("error")
         case NSStreamEvent.EndEncountered:
-            println("ignore")
+            print("ignore")
         default:
-            println("default")
+            print("default")
         }
     }
     */

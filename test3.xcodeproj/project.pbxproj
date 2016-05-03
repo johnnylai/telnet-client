@@ -14,7 +14,6 @@
 		89467EC419F34BA3000FD6B4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89467EC219F34BA3000FD6B4 /* LaunchScreen.xib */; };
 		89467ED019F34BA3000FD6B4 /* test3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89467ECF19F34BA3000FD6B4 /* test3Tests.swift */; };
 		89467EDC19F390DD000FD6B4 /* SecondController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89467EDB19F390DD000FD6B4 /* SecondController.swift */; };
-		89E6898D1A024593008F8720 /* test button image.png in Resources */ = {isa = PBXBuildFile; fileRef = 89E6898C1A024592008F8720 /* test button image.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +38,6 @@
 		89467ECE19F34BA3000FD6B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89467ECF19F34BA3000FD6B4 /* test3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test3Tests.swift; sourceTree = "<group>"; };
 		89467EDB19F390DD000FD6B4 /* SecondController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondController.swift; sourceTree = "<group>"; };
-		89E6898C1A024592008F8720 /* test button image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "test button image.png"; path = "../../../../../../Documents/test button image.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +82,6 @@
 				89467EB919F34BA3000FD6B4 /* AppDelegate.swift */,
 				89467EBB19F34BA3000FD6B4 /* ViewController.swift */,
 				89467EBD19F34BA3000FD6B4 /* Main.storyboard */,
-				89E6898C1A024592008F8720 /* test button image.png */,
 				89467EDB19F390DD000FD6B4 /* SecondController.swift */,
 				89467EC019F34BA3000FD6B4 /* Images.xcassets */,
 				89467EC219F34BA3000FD6B4 /* LaunchScreen.xib */,
@@ -201,7 +198,6 @@
 				89467EBF19F34BA3000FD6B4 /* Main.storyboard in Resources */,
 				89467EC419F34BA3000FD6B4 /* LaunchScreen.xib in Resources */,
 				89467EC119F34BA3000FD6B4 /* Images.xcassets in Resources */,
-				89E6898D1A024593008F8720 /* test button image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
