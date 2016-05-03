@@ -10,11 +10,11 @@
 
 import UIKit
 import Foundation
-extension String {
-    subscript (i: Int) -> String {
-        return String(Array(self)[i])
-    }
-}
+//extension String {
+//    subscript (i: Int) -> String {
+//        return String(Array(self)[i])
+//    }
+//}
 var data = NSMutableArray()
 /*
 public class adeleg: NSObject, NSStreamDelegate {
@@ -136,8 +136,8 @@ func OutputAndBuffer(Input: String) {
 
 var sockcon = Connection()
 public class Connection : NSObject, NSStreamDelegate {
-    let serverAddress: CFString = "localhost"
-    let serverPort: UInt32 = 8443
+    let serverAddress: CFString = "140.112.172.11"
+    let serverPort: UInt32 = 23
     
     public var inputStream: NSInputStream!
     public var outputStream: NSOutputStream!
@@ -151,14 +151,15 @@ public class Connection : NSObject, NSStreamDelegate {
         var writeStream: Unmanaged<CFWriteStream>?
         
         CFStreamCreatePairWithSocketToHost(nil, self.serverAddress, self.serverPort, &readStream, &writeStream)
-        
+        print("readStream = ", readStream, writeStream);
+      
         // Documentation suggests readStream and writeStream can be assumed to
         // be non-nil. If you believe otherwise, you can test if either is nil
         // and implement whatever error-handling you wish.
         
         self.inputStream = readStream!.takeRetainedValue()
         self.outputStream = writeStream!.takeRetainedValue()
-        
+      print("inputStream = ", inputStream);
         self.inputStream.delegate = self
         self.outputStream.delegate = self
         
@@ -172,6 +173,7 @@ public class Connection : NSObject, NSStreamDelegate {
     
     public func stream(stream: NSStream, handleEvent eventCode: NSStreamEvent) {
         var data:NSMutableData = NSMutableData(length: 128)!
+      print("data = ", data)
         switch (eventCode) {
         case NSStreamEvent.OpenCompleted:
             print("Opened connection")
@@ -179,14 +181,22 @@ public class Connection : NSObject, NSStreamDelegate {
             print("Data Recieved")
             var res = sockcon.inputStream?.read(UnsafeMutablePointer<UInt8>(data.mutableBytes), maxLength: 128)
             data.length=res!
-            let newstring = NSString(data: data, encoding: NSUTF8StringEncoding)
+            print("newstring = ", data);
+//            let newstring = NSString(data: data, encoding: NSUTF8StringEncoding)
+            
+//            let big5 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5_HKSCS_1999);
+            
+            
+            let bigFive = CFStringConvertEncodingToNSStringEncoding(3);
+            let newstring = NSString(data: data, encoding: bigFive);
+            print("newstring = ", newstring);
             //var sb: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             
             //var sc: SecondController = sb.instantiateViewControllerWithIdentifier("Chat") as SecondController
             //var sc: SecondController = SecondController()
-            Line=newstring!
+//            Line=newstring  as! String
             FirstClassFunction()
-            print(newstring!)
+            
         case NSStreamEvent.HasSpaceAvailable:
             print("Sending")
             
@@ -208,7 +218,7 @@ public class SecondController: UIViewController,UITableViewDelegate, UITableView
         data.addObject(Line)
         tv1.reloadData()
         //scrolls to the bottom
-        let numberOfSections = tv1.numberOfSections()
+        let numberOfSections = tv1.numberOfSections
         let numberOfRows = tv1.numberOfRowsInSection(numberOfSections-1)
         
         if numberOfRows > 0 {
@@ -298,7 +308,7 @@ public class SecondController: UIViewController,UITableViewDelegate, UITableView
     
     @IBAction func BtnTouchSend(mybutton: UIButton) {
         //var Line : String;
-        Line=t1.text
+        Line=t1.text! as! String
         WriteLine()
         //send data to server
         Line=Line+"\n"
@@ -319,7 +329,7 @@ public class SecondController: UIViewController,UITableViewDelegate, UITableView
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "empty")
-        cell.textLabel.text=data[indexPath.row] as? String
+        cell.textLabel!.text=data[indexPath.row] as! String
         return cell
     }
 

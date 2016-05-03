@@ -21,7 +21,7 @@ class ViewController: UIViewController {
    
     //@IBOutlet var v2 : UIViewController!;
     @IBAction func buttonOkTouched(sender : AnyObject) {
-        l1.text="Welcome "+t1.text+"!";
+        l1.text="Welcome"
     }
     /*
     @IBAction func buttonAboutTouched(sender : AnyObject) {
