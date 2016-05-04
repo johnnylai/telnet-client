@@ -199,6 +199,7 @@ public class Connection : NSObject, NSStreamDelegate {
 //            FirstClassFunction()
           
         case NSStreamEvent.HasSpaceAvailable:
+            
             print("Sending-----")
             
         case NSStreamEvent.ErrorOccurred:
@@ -321,16 +322,17 @@ public class SecondController: UIViewController,UITableViewDelegate, UITableView
         //var Line : String;
         Line=t1.text! as! String
         WriteLine() // write input to UI
+        t1.text=""
       
         //send data to server
 //        Line=Line+"\n"
-        var data = NSData()
+        var data: NSData
         data = Line.dataUsingEncoding(bigFive)!
         print("KEY PRESS: sending data: = ", data)
         var buff:[UInt8] = [UInt8](count:data.length,repeatedValue:0x0)
         data.getBytes(&buff, length: data.length)
         sockcon.outputStream?.write(&buff, maxLength: data.length)
-        t1.text=""
+      
     }
     
     //UITableDatasource
