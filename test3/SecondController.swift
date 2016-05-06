@@ -329,9 +329,11 @@ public class SecondController: UIViewController,UITableViewDelegate, UITableView
         var data: NSData
         data = Line.dataUsingEncoding(bigFive)!
         print("KEY PRESS: sending data: = ", data)
-        var buff:[UInt8] = [UInt8](count:data.length,repeatedValue:0x0)
+        var buff = [UInt8](count:data.length,repeatedValue:0)
         data.getBytes(&buff, length: data.length)
-        sockcon.outputStream?.write(&buff, maxLength: data.length)
+        print("KEY PRESS: sending bytes: = ", buff)
+      
+        sockcon.outputStream.write(buff, maxLength: data.length)
       
     }
     
